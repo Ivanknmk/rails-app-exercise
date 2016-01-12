@@ -1,0 +1,35 @@
+<div id="product-form">
+  <%= bs_form_for(@product) do |f| %>
+      <% if @product.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+            <ul>
+              <% @product.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <!-- Field -->
+      <%= f.label :product_category_id %><br>
+      <%= f.collection_select :product_category_id, ProductCategory.all, :id, :name, prompt: true %>
+
+      <!-- Sku -->
+      <%= f.label :sku %><br>
+      <%= f.text_field :sku %>
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+      <%= f.label :price %><br>
+      <%= f.text_field :price %>
+
+      <!-- Image -->
+      <%= f.label 'Image' %>
+      <%= f.file_field :img %>
+      <br />
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+  <% end %>
+</div>

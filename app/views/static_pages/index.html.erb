@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row">
+    <% if @products.size > 0 %>
+        <div class="col-md-9 product-l">
+          <% @products.in_groups_of(4) do |group| %>
+              <div class="row product-r">
+                <% group.each do |product| %>
+                    <div class="col-sm-3 product-e">
+                      <% if !product.nil? %>
+                          <div class="product-e-in">
+                            <div class="product-t"><%= product.name %></div>
+                            <% if product.img.url %>
+                                <a href="<%= product_path(product) %>"><%= image_tag product.img.thumb %></a>
+                            <% else %>
+                                <a>No disponible</a>
+                            <% end %>
+                            <div class="product-price"><%= product.price %></div>
+                            <!-- Product Add -->
+
+                          </div>
+                          <!-- product-e-in -->
+                      <% end %>
+                    </div>
+                    <!-- col-sm-3 product-e -->
+                <% end %>
+              </div>
+              <!-- row product-r -->
+          <% end %>
+        </div>
+        <!-- col product-l -->
+
+    <% else %>
+        <div class="col-md-9">
+          <div class="row">
+            <h3>No se encontraron productos</h3>
+          </div>
+        </div>
+    <% end %>
+
+
+  </div>
+</div>
